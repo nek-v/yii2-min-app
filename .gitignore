@@ -25,5 +25,7 @@ composer.phar
 phpunit.phar
 # local phpunit config
 /phpunit.xml
-/assets/
-/protected/runtime/
+/assets/*
+!/assets/.gitignore
+/protected/runtime/*
+!/protected/runtime/.gitignore
