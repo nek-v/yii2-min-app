@@ -1,0 +1,40 @@
+{
+    "name": "nek-v/yii2-min-app",
+    "description": "Yii 2 Basic Project Template",
+    "keywords": ["yii2", "framework", "basic", "project template"],
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "^2.0",
+        "yiisoft/yii2-bootstrap": "^2.0"
+    },
+    "config": {
+        "process-timeout": 1800,
+        "vendor-dir": "protected/vendor"
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject"
+        ]
+    },
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "protected/runtime": "0777",
+                    "assets": "0777",
+                    "protected/yii": "0755"
+                }
+            ],
+            "generateCookieValidationKey": [
+                "protected/config/web.php"
+            ]
+        },
+        "asset-installer-paths": {
+            "npm-asset-library": "protected/vendor/npm",
+            "bower-asset-library": "protected/vendor/bower"
+        }
+    }
+}
