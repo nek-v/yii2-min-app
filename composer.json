@@ -3,24 +3,34 @@
     "description": "Yii 2 Basic Project Template",
     "keywords": ["yii2", "framework", "basic", "project template"],
     "type": "project",
-    "license": "BSD-3-Clause",
+    "license": "BSD-4-Clause",
+    "support": {
+        "issues": "https://github.com/nek-v/yii2-min-app/issues",
+        "source": "https://github.com/nek-v/yii2-min-app"
+    },
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "^2.0",
-        "yiisoft/yii2-bootstrap": "^2.0"
+        "yiisoft/yii2": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "*"
     },
     "config": {
         "process-timeout": 1800,
-        "vendor-dir": "protected/vendor"
+        "vendor-dir": "protected/vendor",
+        "fxp-asset": {
+            "enabled": false
+        }
     },
     "scripts": {
-        "post-create-project-cmd": [
-            "yii\\composer\\Installer::postCreateProject"
-        ]
+      "post-install-cmd": [
+        "yii\\composer\\Installer::postInstall"
+      ],
+      "post-create-project-cmd": [
+        "yii\\composer\\Installer::postCreateProject",
+        "yii\\composer\\Installer::postInstall"
+      ]
     },
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
@@ -30,14 +40,18 @@
                     "assets": "0777",
                     "protected/yii": "0755"
                 }
-            ],
-            "generateCookieValidationKey": [
-                "protected/config/web.php"
             ]
         },
-        "asset-installer-paths": {
-            "npm-asset-library": "protected/vendor/npm",
-            "bower-asset-library": "protected/vendor/bower"
+        "yii\\composer\\Installer::postInstall": {
+          "generateCookieValidationKey": [
+            "protected/config/web.php"
+          ]
         }
-    }
+    },
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://asset-packagist.org"
+      }
+    ]
 }
